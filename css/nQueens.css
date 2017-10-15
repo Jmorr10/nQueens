@@ -1,0 +1,455 @@
+/*
+  Properties are grouped together according to function.
+  Groups are separated with newlines.
+
+  Group Order:
+    1. display and related properties (e.g. flexbox properties, etc.)
+        i. If the element, as a child of another, has display properties (e.g. flex), put those first.
+    2. Width, Height (Min's before, Max's after)
+    3. Position and related properties (float, clear, top, bottom, etc.)
+        i. Follows the clockwise side order: top, right, bottom, left.
+    4. Margin, Padding (also following clockwise order)
+    5. Border properties
+    6. Text properties
+    7. Miscellaneous properties, alphabetically listed.
+
+    For rules with 3 or less properties, only newline if multiple properties belong to any one category (1-6).
+*/
+
+body,
+html {
+    width:100%;
+    height: 100%;
+
+    margin:0;
+    padding:0;
+
+    background-color: #2D92C8;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+body > section, body > header, body > footer {
+    min-height: 0;
+}
+
+#content-area {
+    flex: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 15px;
+}
+
+#game-header, #game-footer {
+    display: flex;
+    align-items: center;
+}
+
+#game-title {
+    margin: 0 0 0 16px;
+}
+
+#button-holder {
+    flex: 2;
+    display: flex;
+
+    position: absolute;
+    right: 0;
+    bottom: 16px;
+    left: 0;
+
+    margin: 0;
+    padding: 11px;
+
+    justify-content: space-evenly;
+}
+
+#game-queens {
+    position: absolute;
+    right: 16px;
+}
+
+#game-header,
+#game-footer
+{
+    flex: 0 0 12.5%;
+
+    width: 100%;
+    max-height: 110px;
+
+    margin:0;
+
+    color: #FCF8E3;
+    text-align: center;
+
+    background-color: #3D3D3D;
+}
+
+.action-button, #back-button {
+    background: none;
+    border: none;
+    font-size: 3rem;
+}
+
+#back-button {
+    padding: 0 6px;
+
+    color: #FCF8E3 !important;
+    font-size: 2.4rem;
+}
+
+#back-button:hover {
+    color: #FCF8E3 !important;
+    text-decoration: none !important;
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 500px;
+    height: 290px;
+
+    background-color: #FCF8E3;
+}
+
+#board > div {
+    display: flex;
+    flex: 1;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+#board .tile {
+    flex: 1;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    border: 1px outset black;
+}
+
+#board .queen::after, #board .dot::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    line-height: 1;
+}
+
+#board .queen::after {
+    content: "";
+    font-family: "Glyphicons Halflings";
+    font-size: 2.5rem;
+}
+
+#board .dot::after {
+    content: "●";
+    font-size: 1.25rem;
+}
+
+.achievement {
+    position: relative;
+}
+
+.achievement .label {
+    position: absolute;
+    top: 0.25rem;
+    right: 0;
+}
+
+#grid-sizes-disabled {
+    display: none;
+    margin: 9px 0 10px;
+    line-height: 1.4;
+}
+
+#grid-sizes-disabled.force-show {
+    display: block;
+}
+
+#grid-size-selector label.disabled {
+    pointer-events: none !important;
+}
+
+.modal-header h4 {
+    margin: 0;
+}
+
+.modal h5 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#options {
+    text-align: center;
+}
+
+#options h5, #options .alert, #options .checkbox,
+#options .modal-header {
+    text-align: left;
+}
+
+/* Utility CSS */
+.portrait-please {
+    display: none;
+
+    width: 66%;
+    height: 6.5rem;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    margin: auto;
+
+    color: #fff;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.disable-selection,
+#game-title {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+/* LOADING SPINNER - Courtesy of Tobias Ahlin http://tobiasahlin.com/spinkit/ */
+#board ~ .spinner {
+    display: none;
+    width: 70px;
+    margin: 0;
+    text-align: center;
+}
+
+#board.hidden ~ .spinner {
+    display: block;
+}
+
+.spinner > div {
+    display: inline-block;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 100%;
+
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    background-color: #FCF8E3;
+}
+
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 40% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+      }
+}
+
+/* Media Queries */
+@media screen and (min-width: 700px) {
+    #game-footer {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    #back-button,
+    .action-button,
+    #game-title,
+    #game-queens,
+    .queen::after {
+        font-size: 3rem !important;
+    }
+
+    .dot::after {
+        font-size: 2rem !important;
+    }
+
+    .modal {
+        font-size: 1.75rem;
+    }
+
+    .modal-header button {
+        font-size: 3rem;
+    }
+
+    #options .btn-md {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33333;
+    }
+
+    .modal h5 {
+        font-size: 1.8rem;
+    }
+
+    .modal h4 {
+        font-size: 2.5rem;
+    }
+
+    #board ~ .spinner {
+        width: 140.26px;
+    }
+
+    .spinner > div {
+        width: 36px;
+        height: 36px;
+    }
+
+    .achievement {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+
+    .achievement .label {
+        line-height: 1.5;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33333;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+
+    #button-holder {
+        right: 0;
+        left: auto;
+        bottom: auto;
+        top: 16px;
+    }
+
+    #game-queens {
+        right: 0;
+        left: 0;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    #back-button,
+    .action-button,
+    #game-title,
+    #game-queens,
+    .queen::after {
+        font-size: 4rem !important;
+    }
+
+    .dot::after {
+        font-size: 2.5rem !important;
+    }
+
+    .modal {
+        font-size: 1.75rem;
+    }
+
+    .modal-header button {
+        font-size: 3rem;
+    }
+
+    #board ~ .spinner {
+        width: 140.26px;
+    }
+
+    .spinner > div {
+        width: 36px;
+        height: 36px;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+    #board {
+        width: 44%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+
+    #board {
+        width: 35%;
+    }
+
+    .queen::after {
+        font-size: 2.2rem !important;
+    }
+
+    .dot::after {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+
+    #board {
+        width: 33%;
+    }
+
+}
+
+@media screen and (min-width: 1440px) and (min-height: 527px) {
+
+    #board {
+        width: 38%;
+    }
+
+    .queen::after {
+        font-size: 3rem !important;
+    }
+
+    .dot::after {
+        font-size: 2rem !important;
+    }
+
+}
+
+@media screen and (min-width: 1600px) {
+    #board {
+        width: 33%;
+    }
+}

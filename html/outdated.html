@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+        <title>BrainGames - Outdated Browser</title>
+
+        <link rel="stylesheet" href="../css/outdated.css">
+        <script src="../js/vendor/modernizr-braingames.js"></script>
+        <script src="../js/vendor/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="message-holder">
+            <header>
+                <h1>Outdated browser!</h1>
+            </header>
+            <p>You are using an <strong>outdated</strong> browser.<br/><br/>Please <a href="http://browsehappy.com/">
+                upgrade your browser</a> to improve your experience.</p>
+        </div>
+
+        <script>
+            $('body').append($([]).add("<p>ddddd" + $("html")[0].className + "</p>"));
+        </script>
+    </body>
+</html>
