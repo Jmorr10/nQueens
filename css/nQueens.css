@@ -94,22 +94,10 @@ body > section, body > header, body > footer {
     background-color: #3D3D3D;
 }
 
-.action-button, #back-button {
+.action-button {
     background: none;
     border: none;
     font-size: 3rem;
-}
-
-#back-button {
-    padding: 0 6px;
-
-    color: #FCF8E3 !important;
-    font-size: 2.4rem;
-}
-
-#back-button:hover {
-    color: #FCF8E3 !important;
-    text-decoration: none !important;
 }
 
 #board {
@@ -208,25 +196,6 @@ body > section, body > header, body > footer {
 }
 
 /* Utility CSS */
-.portrait-please {
-    display: none;
-
-    width: 66%;
-    height: 6.5rem;
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    margin: auto;
-
-    color: #fff;
-    font-size: 2.2rem;
-    text-align: center;
-}
-
 .disable-selection,
 #game-title {
     -moz-user-select: none;
@@ -295,7 +264,6 @@ body > section, body > header, body > footer {
 }
 
 @media screen and (min-width: 600px) {
-    #back-button,
     .action-button,
     #game-title,
     #game-queens,
@@ -371,7 +339,6 @@ body > section, body > header, body > footer {
 }
 
 @media screen and (min-width: 850px) {
-    #back-button,
     .action-button,
     #game-title,
     #game-queens,
