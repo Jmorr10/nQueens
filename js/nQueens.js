@@ -13,7 +13,9 @@ nQueens.Game = (function () {
         MIN_GRID_SIZE = 8,
         MAX_GRID_SIZE = 12,
         MIN_TILE_DIMEN = 36,
-        MIN_SCREEN_WIDTH = 320;
+        MIN_SCREEN_WIDTH = 320,
+        // Check CSS Media queries for this value (in px)
+        FOOTER_DISAPPEARS_AT = 700;
 
     // Separates jQuery selectors from the code for ease of maintenance.
     var BOARD_ID = "#board",
@@ -379,8 +381,15 @@ nQueens.Game = (function () {
         function getDisabledGridSizes() {
             var screenWidth = $(window).width(),
                 screenHeight = $(window).height(),
+                // Get available width OUTSIDE of the MIN_SCREEN_WIDTH
                 widthIncreases = Math.floor((screenWidth - MIN_SCREEN_WIDTH) / MIN_TILE_DIMEN),
-                heightIncreases = Math.floor(((screenHeight - MIN_SCREEN_WIDTH) - (screenHeight * 0.25)) / MIN_TILE_DIMEN),
+                // The percentage of the height occupied by the header and footer (in decimal form)
+                screenHeightOccupied = (screenWidth >= FOOTER_DISAPPEARS_AT) ? 0.125 : 0.25,
+                // Get the available height OUTSIDE of the grid (square, so you can just us MIN_SCREEN_WIDTH), while
+                // also taking into account the header and footer (if applicable).
+                heightIncreases = Math.floor(
+                    ((screenHeight - MIN_SCREEN_WIDTH) - (screenHeight * screenHeightOccupied)) / MIN_TILE_DIMEN
+                ),
                 maxIncrease = Math.min(widthIncreases, heightIncreases),
                 disabled = [];
 
