@@ -261,7 +261,7 @@ nQueens.Game = (function () {
             // The prime we will be using is 31.
             // ((hash << 5) - hash) + charCodePoint === hash * 31 + charCodePoint
             for (var i = 0, j = tileString.length; i < j; i++) {
-                var charCodePoint = tileString.codePointAt(i);
+                var charCodePoint = tileString.toString().codePointAt(i);
                 hash = ((hash << 5) - hash) + charCodePoint;
                 // Convert to 32-bit integer by chopping off anything above 32 bits;
                 hash |= 0;

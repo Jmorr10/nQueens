@@ -229,7 +229,7 @@ nQueens.Grid = (function() {
                     getAscendingDiagonalCoords
                 ];
 
-            coordFuncs.forEach((func) => {
+            coordFuncs.forEach(function (func) {
                 coords = coords.concat(func(row, col));
             });
 
@@ -250,7 +250,7 @@ nQueens.Grid = (function() {
                 numQueens = 0;
 
             tileStates.forEach(
-                (x) => { if (x === 2) numQueens++; }
+                function (x) { if (x === 2) numQueens++; }
             );
 
             return numQueens === gridSize;
